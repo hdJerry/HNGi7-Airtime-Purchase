@@ -1,0 +1,26 @@
+{
+  "name": "HNGi7-Airtime-Purchase",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node base.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hdJerry/HNGi7-Airtime-Purchase.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hdJerry/HNGi7-Airtime-Purchase/issues"
+  },
+  "homepage": "https://github.com/hdJerry/HNGi7-Airtime-Purchase#readme",
+  "dependencies": {
+    "body-parser": "1.19.0",
+    "express": "4.17.1",
+    "unirest": "0.6.0"
+  }
+}

@@ -1,0 +1,154 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&family=Salsa&display=swap');
+
+:root{
+  --primarycolor: #00AEFF;
+  --bgcolor1: #0d1e22e8;
+  --bgcolor2: #333;
+  --bgcolor3: #ccc;
+  --white: #fff;
+  --black: #000;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+}
+
+button[disabled='disabled']{
+  cursor: not-allowed;
+}
+
+
+.hide-opt{
+  display: none;
+}
+
+body{
+  background-color: var(--black);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
+  font-family: Salsa;
+}
+
+.hng-logo{
+  width: 60px;
+  height: 60px;
+  background-image: url('./assets/thumb_hng.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-bottom: 30px;
+}
+
+.content{
+  min-width: 350px;
+  max-width: 350px;
+  min-height: 400px;
+  max-height: 500px;
+  background-color: var(--white);
+  border-radius: 6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  box-shadow: 1px 1px 10px #333;
+  padding: 20px 10px;
+}
+
+.content h4{
+  color: var(--primarycolor);
+  font-size: 1.6rem;
+}
+
+
+#form-airtime{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 10px 15px;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.form-sec{
+  width: 100%;
+margin: 10px auto;
+
+}
+
+.form-sec label{
+  padding: 10px 10px 20px;
+  font-family: Poppins;
+  font-size: 0.9rem;
+}
+
+input{
+  width: 100%;
+  height: 40px;
+  outline: none;
+  border: 1px solid var(--primarycolor);
+  padding: 10px 20px;
+  border-radius: 6px;
+  background-color: transparent;
+
+}
+
+textarea{
+  width: 100%;
+  height: 100px;
+  outline: none;
+  border: 1px solid var(--primarycolor);
+  padding: 10px 20px;
+  border-radius: 6px;
+  background-color: transparent;
+
+}
+
+select{
+  width: 100%;
+  height: 40px;
+  border-radius: 6px;
+  background-color: transparent;
+  text-align: center;
+  padding: 5px 15px 5px 15px;
+  border: 1px solid var(--primarycolor);
+  color: var(--primarycolor);
+  font-size: 1.0rem;
+}
+
+select option{
+  border-radius: 5px;
+}
+/* select:hover{
+    border: 1px solid var(--primarycolor);
+    background-color: var(--primarycolor);
+} */
+
+#purchase-btn{
+  width: 100%;
+  height: 40px;
+  border-radius: 6px;
+  text-align: center;
+  background-color: var(--primarycolor);
+  color: var(--white);
+  border: none;
+  outline: none;
+  font-size: 1.0rem;
+  font-weight: bold;
+  margin-top: 20px;
+}
+/*
+textarea{
+  width: 100%;
+  height: 50px;
+  outline: none;
+  border: 1px solid var(--primarycolor);
+  padding: 10px 20px;
+} */

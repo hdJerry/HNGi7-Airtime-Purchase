@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>HNG_WALLET</title>
+    <link rel="stylesheet" href="./master.css">
+  </head>
+  <body>
+
+    <div class="hng-logo"></div>
+
+    <div class="content">
+
+         <h4>Airtime Purchase</h4>
+
+         <form class="" name="airtime" id="form-airtime">
+           <div class="form-sec">
+             <label for="">Select Option</label>
+             <select class="" name="" id="options">
+               <option value="" disabled selected>-Select Options-</option>
+               <option value="1">single</option>
+               <option value="2">multiple</option>
+             </select>
+           </div>
+
+           <div class="form-sec hide-opt" id="single">
+             <label for="phone">Phone number</label>
+             <input type="number" name="single-pay" value="" class="number" placeholder="Phone Number" id="phone" maxlength="14" minlength="11">
+           </div>
+
+           <div class="form-sec hide-opt" id="multiple">
+             <label for="">Phone Numbers</label>
+             <textarea name="multiple-pay" placeholder="e.g 07030995296,08099776567" class="number" id="phones"></textarea>
+           </div>
+
+
+           <div class="form-sec" id="amount">
+             <label for="phone">Amount</label>
+             <input type="number" name="amount" value="" placeholder="Amount" id="amount" autocomplete="off">
+           </div>
+
+           <button type="button" name="button" id="purchase-btn" data-formname="airtime">Purchase</button>
+         </form>
+
+
+    </div>
+
+    <script src="./jquery.js" charset="utf-8"></script>
+    <script src="./main.js" charset="utf-8"></script>
+
+  </body>
+</html>
