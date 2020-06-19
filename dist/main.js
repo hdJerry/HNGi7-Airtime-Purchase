@@ -86,8 +86,25 @@ btn.addEventListener('click',(elm)=>{
     let form = $('.content form[name='+formname+']');
 
     let formdata  = form.serializeObject();
+    //
+    if(formdata['single-pay'].length == 0){
+      delete formdata['single-pay']
+      formdata['number'] = formdata['multiple-pay'];
+      delete formdata['multiple-pay']
+    }else if(formdata['multiple-pay'].length == 0){
+      delete formdata['multiple-pay']
+      formdata['number'] = formdata['single-pay'];
+        delete formdata['single-pay']
+    }else{
+      alert("Something has gone wrong")
+    }
 
     console.log(formdata);
+
+    $('input#phone').prop('disabled',true);
+    $('textarea#phones').prop('disabled',true);
+    $('input#amount').prop('disabled',true);
+    $('#purchase-btn').attr('disabled',true);
 
 })
 
