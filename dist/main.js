@@ -1,5 +1,9 @@
 
-
+//
+// setTimeout(()=>{
+//   $('#error-msg').css('top','0px');
+//
+// },5000)
 
  //
  //
@@ -63,10 +67,15 @@
         try{
 
           let resp = await fetch("/buyairtime", requestOptions);
-          return resp.json();
+          // let res = resp.json();
+          return resp.json()
 
         }catch(error){
-           console.log('error', error)
+          return {
+            status: 0,
+            message: error
+          }
+           // console.log('error', error)
         }
 
         // fetch("/buyairtime", requestOptions)
@@ -83,6 +92,8 @@
         $('input#amount').prop('disabled',false);
         $('#purchase-btn').attr('disabled',false);
         $('#customers').html('');
+        $('#loader-anime').addClass('hide-loader');
+        // return true;
       }
       // getAirtime();
 
@@ -128,8 +139,21 @@ btn.addEventListener('click',async (elm)=>{
 
     let res = await getAirtime(formdata);
 
-    if(res !== undefined){
-      console.log(res);
+    if(res.status == 0){
+
+      // console.log(res.message);
+      $('#error-msg').text(res.message);
+      $('#error-msg').css('top','0px');
+      await Purchase();
+      setTimeout(()=>{
+        $('#error-msg').css('top','-60px');
+
+      },1500)
+
+
+    }else{
+
+      // console.log(res);
 
       let {fail, pass, resp, totalpurchase, status} = res;
 
@@ -148,10 +172,10 @@ btn.addEventListener('click',async (elm)=>{
           $('#customers').append(`
             <tr>
             <td>${value.number}</td>
-            <td>${value.network}</td>
+            <td>${value.network.toUpperCase()}</td>
             <td>${value.amount}</td>
             <td>${value.message}</td>
-            <td>${value.status}</td>
+            <td class='${value.status}'>${value.status}</td>
             </tr>
             `);
           })
@@ -160,8 +184,6 @@ btn.addEventListener('click',async (elm)=>{
           $('#airtime-result').removeClass('show_result');
           $('#loader-anime').addClass('hide-loader');
 
-    }else{
-      Purchase();
     }
 
 

@@ -10,6 +10,25 @@
   --bgColor6: #f7f7f8;
   --white: #fff;
   --black: #000;
+  --fail: #df4141;
+  --success: #377240;
+}
+
+.error-msg{
+    position: absolute;
+    top: -100px;
+    left: 0;
+    right: 0;
+    height: 50px;
+    background-color: var(--fail);
+    color: var(--white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.0rem;
+      font-family: Poppins;
+      font-weight: 600;
+      transition: top 0.5s ease-in-out;
 }
 
 *{
@@ -166,6 +185,7 @@ body{
   padding: 8px;
   font-family: Poppins;
   font-size: 0.9rem;
+  /* text-align: justify; */
   /* width: 100px; */
 }
 
@@ -187,6 +207,17 @@ body{
   font-family: Salsa;
 }
 
+
+.fail{
+  background: var(--fail);
+  color: var(--white);
+}
+
+.pass{
+  background: var(--success);
+  color: var(--white);
+
+}
 
 .form-sec{
   width: 100%;
