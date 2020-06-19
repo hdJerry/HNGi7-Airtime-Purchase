@@ -329,6 +329,7 @@ textarea{
   z-index: 2;
   display: none;
   transition: display 1s ease-in-out;
+  padding: 15px;
   /* opacity: 0.5; */
 }
 .show-modal{
@@ -337,18 +338,21 @@ textarea{
 }
 
 .table-div{
-  width: 70vw;
+  min-width: 70vw;
+  max-width: 100vw;
   height: 70vh;
   background: var(--white);
-  padding: 20px;
+  padding: 15px;
   position: relative;
   border-radius: 6px;
+  overflow: auto;
 
 }
 
 .responsive-table{
   overflow: auto;
   width: 100%;
+  margin: auto;
 }
 
 .table-div h4{
