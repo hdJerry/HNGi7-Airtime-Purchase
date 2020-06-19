@@ -339,12 +339,16 @@ textarea{
 .table-div{
   width: 70vw;
   height: 70vh;
-  overflow: auto;
   background: var(--white);
   padding: 20px;
   position: relative;
   border-radius: 6px;
 
+}
+
+.responsive-table{
+  overflow: auto;
+  width: 100%;
 }
 
 .table-div h4{
