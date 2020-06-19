@@ -6,6 +6,8 @@
   --bgcolor2: #333;
   --bgcolor3: #ccc;
   --bgColor4: #e2e8f0;
+  --bgColor5: #d7d7d7;
+  --bgColor6: #f7f7f8;
   --white: #fff;
   --black: #000;
 }
@@ -31,7 +33,7 @@ button[disabled='disabled']{
 }
 
 body{
-  background-color: var(--black);
+  background-color: var(--bgColor6);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -62,7 +64,7 @@ body{
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  box-shadow: 1px 1px 10px #333;
+  box-shadow: 1px 1px 10px var(--bgcolor3);
   padding: 20px 10px;
   position: relative;
 }
