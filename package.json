@@ -2,10 +2,9 @@
   "name": "HNGi7-Airtime-Purchase",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "base.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node base.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -22,5 +21,8 @@
     "body-parser": "1.19.0",
     "express": "4.17.1",
     "unirest": "0.6.0"
+  },
+  "engines": {
+    "node": "10.x"
   }
 }
