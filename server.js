@@ -94,26 +94,43 @@ app
    let code = await getDigits(datas.PhoneNumber);
    // console.log(code);
    datas['Code'] = code;
-   // console.log(datas);
-   let { body, status } = await unirest.post(url).headers(headers).send(datas).then((response) => response);
-   // console.log(status);
-   if(status == 200){
-      result.push({number: datas.PhoneNumber, 'message': body.Message, status: 'success',network: code, amount: datas.Amount, ref: body.TransactionReference})
-      pass++;
 
+   console.log(code);
+
+   if(code.toLowerCase() == 'Not Found!!'.toLowerCase()){
+     result.push({ number:  datas.PhoneNumber, 'message': "Invalid Network", status: "fail", network: code, amount: datas.Amount, ref: "XXXX"})
+     fail++;
+
+     res.send({
+       status: 'complete',
+       resp: result,
+       pass: pass,
+       fail: fail,
+       totalpurchase: result.length
+     })
    }else{
+     let { body, status } = await unirest.post(url).headers(headers).send(datas).then((response) => response);
+     // console.log(status);
+     if(status == 200){
+       result.push({number: datas.PhoneNumber, 'message': body.Message, status: 'success',network: code, amount: datas.Amount, ref: body.TransactionReference})
+       pass++;
 
-      result.push({number: datas.PhoneNumber, 'message': body.Message, status: 'fail',network: code, amount: datas.Amount, ref: "XXXX"})
-      fail++;
+     }else{
+
+       result.push({number: datas.PhoneNumber, 'message': body.Message, status: 'fail',network: code, amount: datas.Amount, ref: "XXXX"})
+       fail++;
+     }
+     //
+     res.send({
+       status: 'complete',
+       resp: result,
+       pass: pass,
+       fail: fail,
+       totalpurchase: result.length
+     })
+
    }
-   //
-   res.send({
-     status: 'complete',
-     resp: result,
-     pass: pass,
-     fail: fail,
-     totalpurchase: result.length
-   })
+   // console.log(datas);
  }else if(datas['single'] === false){
 
    delete datas['single'];
@@ -133,24 +150,31 @@ app
        // console.log(code);
        datas['Code'] = code;
 
-       // console.log(datas);
+       // console.log(code);
        // console.log("=====================================================");
-
-       let { body, status } = await unirest.post(url).headers(headers).send(datas).then((response) => response);
-       if(status == 200){
-          result.push({number:  bulkNumber[num], 'message': body.Message, status: 'success',network: code, amount: datas.Amount, ref: body.TransactionReference})
-          pass++;
-
+          if(code.toLowerCase() == 'Not Found!!'.toLowerCase()){
+         result.push({ number:  bulkNumber[num], 'message': "Invalid Network", status: "fail", network: code, amount: datas.Amount, ref: "XXXX"})
+         fail++;
+         // num++;
        }else{
+         let { body, status } = await unirest.post(url).headers(headers).send(datas).then((response) => response);
+         if(status == 200){
+           result.push({number:  bulkNumber[num], 'message': body.Message, status: 'success',network: code, amount: datas.Amount, ref: body.TransactionReference})
+           pass++;
 
-          result.push({ number:  bulkNumber[num], 'message': body.Message, status: "fail", network: code, amount: datas.Amount, ref: "XXXX"})
-          fail++;
+         }else{
+
+           result.push({ number:  bulkNumber[num], 'message': body.Message, status: "fail", network: code, amount: datas.Amount, ref: "XXXX"})
+           fail++;
+         }
+         // console.log(result);
+
+         // },3000);
+
+
        }
-       // console.log(result);
 
-     // },3000);
-
-     num++;
+       num++;
    }
    if(num === bulkNumber.length){
 
