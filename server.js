@@ -13,7 +13,7 @@ let getDigits = require('./telco-checker.js');
 // console.log(provider);
 
 let test_secretkey ="hfucj5jatq8h";
-let text_publickey = "uvjqzm5xl6bw";
+let test_publickey = "uvjqzm5xl6bw";
 
 
 
@@ -62,7 +62,7 @@ app
   let datas = data;
   // console.log(data);
 
-  datas['SecretKey'] = secretkey
+  datas['SecretKey'] = test_secretkey;
 
   let result = [];
   let pass = 0;
@@ -72,8 +72,8 @@ app
  //
  //  console.log(datas);
  // //
- //  let url ="https://sandbox.wallets.africa/bills/airtime/purchase";
-  let url ="https://api.wallets.africa/bills/airtime/purchase";
+  // let url ="https://api.wallets.africa/bills/airtime/purchase";
+   let url ="https://sandbox.wallets.africa/bills/airtime/purchase";
  // //
  //  let headers = {
  //    'Accept': 'application/json',
@@ -86,7 +86,7 @@ app
   let headers = {
     'Accept': 'application/json',
     'Content-Type':'application/json',
-    'Authorization':'Bearer '+publickey
+    'Authorization':'Bearer '+test_publickey
   }
  if(datas['single'] === true){
 
@@ -96,16 +96,17 @@ app
    datas['Code'] = code;
    // console.log(datas);
    let { body, status } = await unirest.post(url).headers(headers).send(datas).then((response) => response);
+   // console.log(status);
    if(status == 200){
-      result.push({number: datas.PhoneNumber, 'message': body.Message, status: 'success',network: code, amount: datas.Amount})
+      result.push({number: datas.PhoneNumber, 'message': body.Message, status: 'success',network: code, amount: datas.Amount, ref: body.TransactionReference})
       pass++;
 
    }else{
 
-      result.push({number: datas.PhoneNumber, 'message': body.Message, status: 'fail',network: code, amount: datas.Amount})
+      result.push({number: datas.PhoneNumber, 'message': body.Message, status: 'fail',network: code, amount: datas.Amount, ref: "XXXX"})
       fail++;
    }
-
+   //
    res.send({
      status: 'complete',
      resp: result,
@@ -137,12 +138,12 @@ app
 
        let { body, status } = await unirest.post(url).headers(headers).send(datas).then((response) => response);
        if(status == 200){
-          result.push({number:  bulkNumber[num], 'message': body.Message, status: 'success',network: code, amount: datas.Amount})
+          result.push({number:  bulkNumber[num], 'message': body.Message, status: 'success',network: code, amount: datas.Amount, ref: body.TransactionReference})
           pass++;
 
        }else{
 
-          result.push({ number:  bulkNumber[num], 'message': body.Message, status: "fail", network: code, amount: datas.Amount})
+          result.push({ number:  bulkNumber[num], 'message': body.Message, status: "fail", network: code, amount: datas.Amount, ref: "XXXX"})
           fail++;
        }
        // console.log(result);

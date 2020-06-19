@@ -164,6 +164,7 @@ btn.addEventListener('click',async (elm)=>{
         <th style="text-align: center;">Network</th>
         <th style="text-align: center;">Amount</th>
         <th style="text-align: center;">Message</th>
+        <th style="text-align: center;">Transaction Ref</th>
         <th style="text-align: center;">Status</th>
         </tr>
         `);
@@ -175,6 +176,7 @@ btn.addEventListener('click',async (elm)=>{
             <td style="text-align: center;">${value.network.toUpperCase()}</td>
             <td style="text-align: center;">${value.amount}</td>
             <td class='nowrap'>${value.message}</td>
+            <td style="text-align: center;">${value.ref}</td>
             <td class='${value.status}' style="text-align: center;">${value.status}</td>
             </tr>
             `);

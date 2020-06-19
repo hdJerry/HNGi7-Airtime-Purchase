@@ -227,7 +227,7 @@ body{
   color: var(--white);
 }
 
-.pass{
+.success{
   background: var(--success);
   color: var(--white);
 
