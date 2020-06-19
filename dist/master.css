@@ -29,6 +29,7 @@
       font-family: Poppins;
       font-weight: 600;
       transition: top 0.5s ease-in-out;
+      z-index: 10;
 }
 
 *{
@@ -162,26 +163,27 @@ body{
  height: 100%;
 } */
 
+
+.airtime-result{
+  margin-bottom: 30px;
+  /* height: unset; */
+}
+
 .show_result{
   display: none;
 }
 
-#airtime-result{
-  overflow: auto;
-  margin-bottom: 30px;
-}
-
-
 #customers {
   font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
   border-collapse: collapse;
-  /* width: 100%; */
-  /* margin-top: 100px; */
+  width: 100%;
+  /* height: auto; */
+  margin-top: 30px;
   border-radius: 6px;
 }
 
 #customers td, #customers th {
-  border: 1px solid var(--bgcolor2);
+  border: 1px solid #ccc;
   padding: 8px;
   font-family: Poppins;
   font-size: 0.9rem;
@@ -189,12 +191,24 @@ body{
   /* width: 100px; */
 }
 
-#customers tr td:nth-of-type(4){
-  width: 150px;
-  max-width: 200px;
+/* table td:not(.nowrap){
+  background: red;
+  white-space: nowrap;
 }
 
-#customers tr:nth-child(even){background-color: #f2f2f2;}
+ */
+
+#customers th:nth-child(4){
+  width: 250px;
+  max-width: 300px;
+  /* word-wrap: break-word; */
+  /* white-space: wrap; */
+  /* height: 50px; */
+  /* background: yellow; */
+  /* box-sizing: content-box; */
+}
+
+/* #customers tr:nth-child(even){background-color: var(--primarycolor); color: var(--white);} */
 
 /* #customers tr:hover {background-color: #ddd;} */
 
@@ -273,7 +287,7 @@ select option{
     background-color: var(--primarycolor);
 } */
 
-#purchase-btn, #back-btn{
+#purchase-btn, #back-btn, #show-modal{
   width: 100%;
   height: 40px;
   border-radius: 6px;
@@ -304,6 +318,49 @@ textarea{
   padding: 10px 20px;
 } */
 
+
+.modal-result{
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  background-color: #33333396;
+  z-index: 2;
+  display: none;
+  transition: display 1s ease-in-out;
+  /* opacity: 0.5; */
+}
+.show-modal{
+  display: flex;
+
+}
+
+.table-div{
+  width: 70vw;
+  height: 70vh;
+  overflow: auto;
+  background: var(--white);
+  padding: 20px;
+  position: relative;
+  border-radius: 6px;
+
+}
+
+.table-div h4{
+  font-size: 1.5rem;
+  text-align: center;
+  color: var(--primarycolor);
+}
+
+.table-div span{
+  position: fixed;
+  right: 40px;
+  top: 25px;
+  font-size: 2.4rem;
+  color: var(--white);
+  cursor: pointer;
+}
 
 @keyframes scale-logo {
 

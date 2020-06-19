@@ -148,7 +148,7 @@ btn.addEventListener('click',async (elm)=>{
       setTimeout(()=>{
         $('#error-msg').css('top','-60px');
 
-      },1500)
+      },3000)
 
 
     }else{
@@ -160,22 +160,22 @@ btn.addEventListener('click',async (elm)=>{
       $('#customers').html('');
       $('#customers').append(`
         <tr>
-        <th>Phone</th>
-        <th>Network</th>
-        <th>Amount</th>
-        <th>Message</th>
-        <th>Status</th>
+        <th style="text-align: center;>Phone</th>
+        <th style="text-align: center;>Network</th>
+        <th style="text-align: center;>Amount</th>
+        <th style="text-align: center;>Message</th>
+        <th style="text-align: center;>Status</th>
         </tr>
         `);
 
         resp.forEach(value =>{
           $('#customers').append(`
             <tr>
-            <td>${value.number}</td>
-            <td>${value.network.toUpperCase()}</td>
-            <td>${value.amount}</td>
-            <td>${value.message}</td>
-            <td class='${value.status}'>${value.status}</td>
+            <td style="text-align: center;">${value.number}</td>
+            <td style="text-align: center;">${value.network.toUpperCase()}</td>
+            <td style="text-align: center;">${value.amount}</td>
+            <td class='nowrap'>${value.message}</td>
+            <td class='${value.status}' style="text-align: center;">${value.status}</td>
             </tr>
             `);
           })
@@ -268,4 +268,12 @@ $('body')
 
 .on('click','#back-btn',()=>{
   Purchase();
+})
+
+.on('click', '#show-modal',(elm)=>{
+  $('#my-modal').addClass('show-modal');
+})
+
+.on('click', '.close-modal', ()=>{
+    $('#my-modal').removeClass('show-modal');
 })
