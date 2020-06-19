@@ -128,34 +128,42 @@ btn.addEventListener('click',async (elm)=>{
 
     let res = await getAirtime(formdata);
 
-    console.log(res);
+    if(res !== undefined){
+      console.log(res);
 
-    let {fail, pass, resp, totalpurchase, status} = res;
+      let {fail, pass, resp, totalpurchase, status} = res;
 
-    $('#customers').html('');
-    $('#customers').append(`
+      $('#customers').html('');
+      $('#customers').append(`
+        <tr>
+        <th>Phone</th>
+        <th>Network</th>
+        <th>Amount</th>
+        <th>Message</th>
+        <th>Status</th>
+        </tr>
+        `);
+
+        resp.forEach(value =>{
+          $('#customers').append(`
             <tr>
-              <th>Phone</th>
-              <th>Amount</th>
-              <th>Message</th>
-              <th>Status</th>
+            <td>${value.number}</td>
+            <td>${value.network}</td>
+            <td>${value.amount}</td>
+            <td>${value.message}</td>
+            <td>${value.status}</td>
             </tr>
-      `);
+            `);
+          })
 
-      resp.forEach(value =>{
-        $('#customers').append(`
-              <tr>
-                <td>${value.number}</td>
-                <td>${value.amount}</td>
-                <td>${value.message}</td>
-                <td>${value.status}</td>
-              </tr>
-          `);
-      })
+          $('#form-airtime').addClass('show_result');
+          $('#airtime-result').removeClass('show_result');
+          $('#loader-anime').addClass('hide-loader');
 
-      $('#form-airtime').addClass('show_result');
-      $('#airtime-result').removeClass('show_result');
-      $('#loader-anime').addClass('hide-loader');
+    }else{
+      Purchase();
+    }
+
 
 
 

@@ -49,8 +49,8 @@ app
 
  let { body, status } = await unirest.post(url).headers(headers).send(data).then((response) => response);
 
- console.log(body);
- console.log(status);
+ // console.log(body);
+ // console.log(status);
 
 })
 
@@ -94,7 +94,7 @@ app
    let code = await getDigits(datas.PhoneNumber);
    // console.log(code);
    datas['Code'] = code;
-   console.log(datas);
+   // console.log(datas);
    let { body, status } = await unirest.post(url).headers(headers).send(datas).then((response) => response);
    if(status == 200){
       result.push({number: datas.PhoneNumber, 'message': body.Message, status: 'success',network: code, amount: datas.Amount})
