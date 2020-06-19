@@ -5,6 +5,7 @@
   --bgcolor1: #0d1e22e8;
   --bgcolor2: #333;
   --bgcolor3: #ccc;
+  --bgColor4: #e2e8f0;
   --white: #fff;
   --black: #000;
 }
@@ -53,7 +54,7 @@ body{
 .content{
   min-width: 350px;
   max-width: 350px;
-  min-height: 400px;
+  min-height: 430px;
   max-height: 500px;
   background-color: var(--white);
   border-radius: 6px;
@@ -63,6 +64,58 @@ body{
   flex-direction: column;
   box-shadow: 1px 1px 10px #333;
   padding: 20px 10px;
+  position: relative;
+}
+
+.loading{
+  position: absolute;
+  opacity: 0.5;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: var(--bgcolor2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+
+}
+
+.loader{
+  width: 60px;
+  height: 70px;
+  background-color: var(--primarycolor);
+  position: relative;
+  /* animation-fill-mode: forwards; */
+  animation-duration: 0.4s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  animation-name: scale-logo;
+}
+
+.loader::before{
+  content: "";
+  position: absolute;
+  left: 23px;
+  right: 23px;
+  top: 0px;
+  bottom: 0px;
+  background-color: var(--bgcolor2);
+}
+
+.loader::after{
+  content: "";
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  top: 10px;
+  bottom: 10px;
+  background-color: var(--bgcolor2);
+}
+
+.hide-loader{
+  display: none;
 }
 
 .content h4{
@@ -71,15 +124,65 @@ body{
 }
 
 
-#form-airtime{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+
+.form-airtime,.airtime-result{
   padding: 10px 15px;
   width: 100%;
   margin-top: 20px;
+  height: 100%;
 }
+
+/* .airtime-result{
+
+ padding: 10px 15px;
+ width: 100%;
+ margin-top: 20px;
+ height: 100%;
+} */
+
+.show_result{
+  display: none;
+}
+
+#airtime-result{
+  overflow: auto;
+  margin-bottom: 30px;
+}
+
+
+#customers {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  /* width: 100%; */
+  /* margin-top: 100px; */
+  border-radius: 6px;
+}
+
+#customers td, #customers th {
+  border: 1px solid var(--bgcolor2);
+  padding: 8px;
+  font-family: Poppins;
+  font-size: 0.9rem;
+  width: 100px;
+}
+
+#customers tr td{
+  height: 30px;
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+/* #customers tr:hover {background-color: #ddd;} */
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: var(--primarycolor);
+  color: white;
+  font-family: Salsa;
+}
+
 
 .form-sec{
   width: 100%;
@@ -135,7 +238,7 @@ select option{
     background-color: var(--primarycolor);
 } */
 
-#purchase-btn{
+#purchase-btn, #back-btn{
   width: 100%;
   height: 40px;
   border-radius: 6px;
@@ -148,6 +251,15 @@ select option{
   font-weight: bold;
   margin-top: 20px;
 }
+
+#back-btn{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
+  border-radius: 0 0 6px 6px;
+}
 /*
 textarea{
   width: 100%;
@@ -156,3 +268,15 @@ textarea{
   border: 1px solid var(--primarycolor);
   padding: 10px 20px;
 } */
+
+
+@keyframes scale-logo {
+
+  from{
+    transform: scale(0.9);
+  }
+  to{
+    transform: scale(1.1);
+  }
+
+}

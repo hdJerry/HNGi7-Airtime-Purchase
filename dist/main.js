@@ -45,10 +45,10 @@
       }
 
 
-      function getAirtime({amount, number}){
+      async function getAirtime({amount, number, isSingle}){
 
         // var raw = JSON.stringify({"Code":"1000","Amount":100,"PhoneNumber":"07068260000","SecretKey":"5dd38ui1f50c"});
-        var raw = JSON.stringify({"Amount":amount,"PhoneNumber":number});
+        var raw = JSON.stringify({"Amount":amount,"PhoneNumber":number,'single': isSingle});
 
         var requestOptions = {
           method: 'POST',
@@ -60,10 +60,29 @@
           redirect: 'follow',
         };
 
-        fetch("/buyairtime", requestOptions)
-        .then(response => console.log(response))
-        // .then(result => console.log(result))
-        .catch(error => console.log('error', error));
+        try{
+
+          let resp = await fetch("/buyairtime", requestOptions);
+          return resp.json();
+
+        }catch(error){
+           console.log('error', error)
+        }
+
+        // fetch("/buyairtime", requestOptions)
+        // .then(response => response.json())
+        // .then(result => result)
+        // .catch(error => console.log('error', error));
+      }
+
+      async function Purchase(){
+        $('#form-airtime').removeClass('show_result');
+        $('#airtime-result').addClass('show_result');
+        $('input#phone').prop('disabled',false);
+        $('textarea#phones').prop('disabled',false);
+        $('input#amount').prop('disabled',false);
+        $('#purchase-btn').attr('disabled',false);
+        $('#customers').html('');
       }
       // getAirtime();
 
@@ -74,7 +93,7 @@ $('#purchase-btn').attr('disabled',true);
 $('input#amount').prop('disabled',true);
 
 
-btn.addEventListener('click',(elm)=>{
+btn.addEventListener('click',async (elm)=>{
 
   elm.preventDefault();
   // elm.stopImmediatePropagtion();
@@ -91,21 +110,56 @@ btn.addEventListener('click',(elm)=>{
       delete formdata['single-pay']
       formdata['number'] = formdata['multiple-pay'];
       delete formdata['multiple-pay']
+      formdata['isSingle'] = false;
     }else if(formdata['multiple-pay'].length == 0){
       delete formdata['multiple-pay']
       formdata['number'] = formdata['single-pay'];
         delete formdata['single-pay']
+        formdata['isSingle'] = true;
     }else{
       alert("Something has gone wrong")
     }
-
-    console.log(formdata);
 
     $('input#phone').prop('disabled',true);
     $('textarea#phones').prop('disabled',true);
     $('input#amount').prop('disabled',true);
     $('#purchase-btn').attr('disabled',true);
+    $('#loader-anime').removeClass('hide-loader');
 
+    let res = await getAirtime(formdata);
+
+    console.log(res);
+
+    let {fail, pass, resp, totalpurchase, status} = res;
+
+    $('#customers').html('');
+    $('#customers').append(`
+            <tr>
+              <th>Phone</th>
+              <th>Amount</th>
+              <th>Message</th>
+              <th>Status</th>
+            </tr>
+      `);
+
+      resp.forEach(value =>{
+        $('#customers').append(`
+              <tr>
+                <td>${value.number}</td>
+                <td>${value.amount}</td>
+                <td>${value.message}</td>
+                <td>${value.status}</td>
+              </tr>
+          `);
+      })
+
+      $('#form-airtime').addClass('show_result');
+      $('#airtime-result').removeClass('show_result');
+      $('#loader-anime').addClass('hide-loader');
+
+
+
+    // console.log(res);
 })
 
 
@@ -180,4 +234,8 @@ $('body')
   }else{
       $('#purchase-btn').attr('disabled',true);
   }
+})
+
+.on('click','#back-btn',()=>{
+  Purchase();
 })
