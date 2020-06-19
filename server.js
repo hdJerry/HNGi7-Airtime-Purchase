@@ -96,6 +96,6 @@ app
 
 
 
-app.listen(2440, ()=>{
+app.listen(process.env.PORT || 2440, ()=>{
   console.log("App working");
 })
