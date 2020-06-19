@@ -160,11 +160,11 @@ btn.addEventListener('click',async (elm)=>{
       $('#customers').html('');
       $('#customers').append(`
         <tr>
-        <th style="text-align: center;>Phone</th>
-        <th style="text-align: center;>Network</th>
-        <th style="text-align: center;>Amount</th>
-        <th style="text-align: center;>Message</th>
-        <th style="text-align: center;>Status</th>
+        <th style="text-align: center;">Phone</th>
+        <th style="text-align: center;">Network</th>
+        <th style="text-align: center;">Amount</th>
+        <th style="text-align: center;">Message</th>
+        <th style="text-align: center;">Status</th>
         </tr>
         `);
 
