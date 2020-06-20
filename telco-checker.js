@@ -48,6 +48,9 @@ let numbers = {
 */
  function getDigits(digit){
   // console.log(digit);
+  if(digit.length > 14){
+    return "Not Found!!";
+  }
   if(digit.length >= 11){
     let network = validateNetwork(digit);
     // console.log(network);
