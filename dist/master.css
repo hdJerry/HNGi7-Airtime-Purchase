@@ -14,13 +14,13 @@
   --success: #377240;
 }
 
-.error-msg{
+.notification{
     position: absolute;
     top: -100px;
     left: 0;
     right: 0;
     height: 50px;
-    background-color: var(--fail);
+
     color: var(--white);
     display: flex;
     justify-content: center;
@@ -30,6 +30,14 @@
       font-weight: 600;
       transition: top 0.5s ease-in-out;
       z-index: 10;
+}
+
+.error-msg{
+  background-color: var(--fail);
+}
+
+.success-msg{
+  background-color: var(--success);
 }
 
 *{

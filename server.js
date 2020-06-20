@@ -67,6 +67,8 @@ app
   let result = [];
   let pass = 0;
   let fail = 0;
+  let message = "";
+  let statusX = 0;
 
 
  //
@@ -95,18 +97,19 @@ app
    // console.log(code);
    datas['Code'] = code;
 
-   console.log(code);
+   // console.log(code);
 
    if(code.toLowerCase() == 'Not Found!!'.toLowerCase()){
-     result.push({ number:  datas.PhoneNumber, 'message': "Invalid Network", status: "fail", network: code, amount: datas.Amount, ref: "XXXX"})
+     result.push({ number:  datas.PhoneNumber, 'message': "Invalid Network Provide", status: "fail", network: code, amount: datas.Amount, ref: "XXXX"})
      fail++;
 
      res.send({
-       status: 'complete',
+       status: 0,
        resp: result,
        pass: pass,
        fail: fail,
-       totalpurchase: result.length
+       totalpurchase: result.length,
+       message: "Invalid Network Provide"
      })
    }else{
      let { body, status } = await unirest.post(url).headers(headers).send(datas).then((response) => response);
@@ -114,19 +117,24 @@ app
      if(status == 200){
        result.push({number: datas.PhoneNumber, 'message': body.Message, status: 'success',network: code, amount: datas.Amount, ref: body.TransactionReference})
        pass++;
+       statusX = 1;
+       message = body.Message;
 
      }else{
 
        result.push({number: datas.PhoneNumber, 'message': body.Message, status: 'fail',network: code, amount: datas.Amount, ref: "XXXX"})
        fail++;
+       statusX = 0;
+       message = body.Message;
      }
      //
      res.send({
-       status: 'complete',
+       status: statusX,
        resp: result,
        pass: pass,
        fail: fail,
-       totalpurchase: result.length
+       totalpurchase: result.length,
+       message: message
      })
 
    }
@@ -179,11 +187,12 @@ app
    if(num === bulkNumber.length){
 
      res.send({
-       status: 'complete',
+       status: 1,
        resp: result,
        pass: pass,
        fail: fail,
-       totalpurchase: result.length
+       totalpurchase: result.length,
+       message: `Total of ${result.length} completed, ${pass} success, ${fail} fail`
      })
    }
 

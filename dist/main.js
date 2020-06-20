@@ -95,6 +95,23 @@
         $('#loader-anime').addClass('hide-loader');
         // return true;
       }
+
+      async function notification(status, message){
+
+        $('#notification').removeClass('error-msg');
+        $('#notification').removeClass('success-msg');
+
+        $('#notification').text(message);
+        $('#notification').addClass(status);
+
+        $('#notification').css('top','0px');
+        // await Purchase();
+        setTimeout(()=>{
+          $('#notification').css('top','-60px');
+
+        },3000)
+
+      }
       // getAirtime();
 
       let btn = document.getElementById('purchase-btn');
@@ -142,20 +159,28 @@ btn.addEventListener('click',async (elm)=>{
     if(res.status == 0){
 
       // console.log(res.message);
-      $('#error-msg').text(res.message);
-      $('#error-msg').css('top','0px');
-      await Purchase();
-      setTimeout(()=>{
-        $('#error-msg').css('top','-60px');
+      // $('#error-msg').text(res.message);
+      // $('#error-msg').css('top','0px');
 
-      },3000)
+      await notification('error-msg', res.message);
+      await Purchase();
+      // setTimeout(()=>{
+      //   $('#error-msg').css('top','-60px');
+      //
+      // },3000)
 
 
     }else{
 
       // console.log(res);
 
-      let {fail, pass, resp, totalpurchase, status} = res;
+      let {fail, pass, resp, totalpurchase, status, message} = res;
+
+      if(status == 1){
+          await notification('success-msg', message);
+      }else if(status == 0){
+          await notification('error-msg', message);
+      }
 
       $('#customers').html('');
       $('#customers').append(`
